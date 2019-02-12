@@ -1,4 +1,4 @@
-#nyt-most-popular
+# nyt-most-popular
 
 This is a small project that shows how to create a lean but flexible architecture in Android.
 The app is very simple, it consists of 2 screens: Article List and Article Details.

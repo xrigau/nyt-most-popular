@@ -3,7 +3,9 @@ package com.xrigau.nytimesmostpopular.articles;
 import androidx.appcompat.app.AppCompatActivity;
 import com.xrigau.nytimesmostpopular.HttpServiceFactory;
 import com.xrigau.nytimesmostpopular.article.MostPopularUseCase;
+import com.xrigau.nytimesmostpopular.common.Dependencies;
 import com.xrigau.nytimesmostpopular.details.AndroidNavigator;
+import okhttp3.OkHttpClient;
 
 import android.os.Bundle;
 
@@ -16,7 +18,8 @@ public class ArticleListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.articles_activity);
 
-        HttpServiceFactory httpServiceFactory = HttpServiceFactory.create("https://api.nytimes.com/");
+        OkHttpClient okHttpClient = ((Dependencies) getApplication()).provideOkHttpClient();
+        HttpServiceFactory httpServiceFactory = HttpServiceFactory.create("https://api.nytimes.com/", okHttpClient);
         MostPopularUseCase mostPopularUseCase = MostPopularUseCase.create(httpServiceFactory, BuildConfig.API_TOKEN);
         ArticlesView articlesView = AndroidArticlesView.create(this, createNavigationStrategy());
         articlesPresenter = new ArticleListPresenter(mostPopularUseCase, articlesView);

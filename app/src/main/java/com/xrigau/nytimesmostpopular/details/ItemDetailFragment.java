@@ -1,18 +1,17 @@
-package com.xrigau.nytimesmostpopular;
+package com.xrigau.nytimesmostpopular.details;
+
+import androidx.fragment.app.Fragment;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.xrigau.nytimesmostpopular.R;
+import com.xrigau.nytimesmostpopular.articles.ArticleListActivity;
+import com.xrigau.nytimesmostpopular.dummy.DummyContent;
 
 import android.app.Activity;
 import android.os.Bundle;
-
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.xrigau.nytimesmostpopular.dummy.DummyContent;
 
 /**
  * A fragment representing a single Item detail screen.

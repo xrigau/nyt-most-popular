@@ -1,4 +1,4 @@
-package com.xrigau.nytimesmostpopular;
+package com.xrigau.nytimesmostpopular.details;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.app.NavUtils;
+import com.xrigau.nytimesmostpopular.R;
+import com.xrigau.nytimesmostpopular.articles.ArticleListActivity;
 
 import android.view.MenuItem;
 

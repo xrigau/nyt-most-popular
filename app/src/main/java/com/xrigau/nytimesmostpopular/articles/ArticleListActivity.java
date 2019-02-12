@@ -1,9 +1,12 @@
-package com.xrigau.nytimesmostpopular;
+package com.xrigau.nytimesmostpopular.articles;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.xrigau.nytimesmostpopular.details.ItemDetailActivity;
+import com.xrigau.nytimesmostpopular.details.ItemDetailFragment;
+import com.xrigau.nytimesmostpopular.R;
 import com.xrigau.nytimesmostpopular.dummy.DummyContent;
 
 import android.content.Context;

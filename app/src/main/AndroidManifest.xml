@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ArticleListActivity"
+            android:name=".articles.ArticleListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,13 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ItemDetailActivity"
+            android:name=".details.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ArticleListActivity"
+            android:parentActivityName=".articles.ArticleListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.xrigau.nytimesmostpopular.ArticleListActivity" />
+                android:value="com.xrigau.nytimesmostpopular.articles.ArticleListActivity" />
         </activity>
     </application>
 

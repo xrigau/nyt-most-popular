@@ -1,7 +1,8 @@
-package com.xrigau.nytimesmostpopular;
+package com.xrigau.nytimesmostpopular.articles;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.xrigau.nytimesmostpopular.R;
 import com.xrigau.nytimesmostpopular.dummy.DummyContent;
 
 import android.view.LayoutInflater;

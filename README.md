@@ -22,7 +22,8 @@ Once you've put the API Token in the `local.properties` file, you can build the 
 ./gradlew build
 ```
 
-And you can also install the app directly to an attached Android device by running:
+This command will build the APK, run the unit tests and the static analysis.
+You can also install the app directly to an attached Android device by running:
 
 ```
 ./gradlew installDebug
@@ -51,3 +52,16 @@ The project architecture attempts to be simple but flexible. It resembles the MV
  - The Model has been renamed to UseCase. This is in order to adhere a bit to the Clean Architecture. A UseCase is responsible for collecting data and transforming it so that it can be consumed by the Presenter. This includes networking, parsing data, caching it, etc.
 
 Following this architecture allows for great testability, since the business logic sits in the UseCase (which is a plain java class), and the presentation logic sits in the Presenter (which is also a plain java class).
+
+## Static analysis
+
+The project only runs the Android Lint static analysis. This can be executed from the IDE or by running the following command:
+
+```
+./gradlew check
+```
+
+---
+
+Note that I was unable to implement a nice design, but the app is responsive and it does work for both phones (separate screens for article list and details) and tablets (2-pane layout with article list and details in the same screen).
+Additionally, since the NYTimes API doesn't provide the full article content, I decided to add a Floating action button in the Article Details screen that opens the full Article using [Chrome custom tabs](https://developer.chrome.com/multidevice/android/customtabs).

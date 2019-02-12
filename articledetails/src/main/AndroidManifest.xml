@@ -1,0 +1,14 @@
+<manifest package="com.xrigau.nytimesmostpopular.details"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+            <!--android:parentActivityName="com.xrigau.nytimesmostpopular.articles.ArticleListActivity"-->
+        <activity
+            android:name=".ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value="com.xrigau.nytimesmostpopular.articles.ArticleListActivity" />-->
+        </activity>
+    </application>
+</manifest>

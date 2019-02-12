@@ -21,7 +21,6 @@ android {
 
 dependencies {
   implementation project(path: ':core')
-  implementation project(path: ':articledetails')
 
   // common
   api 'androidx.appcompat:appcompat:1.0.2'

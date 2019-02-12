@@ -44,6 +44,8 @@ These can be run from the IDE or from the command line by executing the followin
 ./gradlew connectedCheck
 ```
 
+The code coverage can be checked in the IDE (Android Studio and IntelliJ IDEA) as explained [here](https://developer.android.com/studio/test/#view_test_coverage).
+
 ## Architecture
 
 The project architecture attempts to be simple but flexible. It resembles the MVP architecture:

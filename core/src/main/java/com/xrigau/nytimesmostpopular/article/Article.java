@@ -1,6 +1,8 @@
 package com.xrigau.nytimesmostpopular.article;
 
-public class Article {
+import java.io.Serializable;
+
+public class Article implements Serializable {
 
     private final long id;
     private final String title;
@@ -80,7 +82,7 @@ public class Article {
         return result;
     }
 
-    public static class Image {
+    public static class Image implements Serializable {
         static final Image MISSING = new Image("missing");
 
         private final String url;

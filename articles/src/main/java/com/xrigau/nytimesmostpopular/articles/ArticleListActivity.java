@@ -5,8 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import com.xrigau.nytimesmostpopular.HttpServiceFactory;
 import com.xrigau.nytimesmostpopular.article.Article;
 import com.xrigau.nytimesmostpopular.article.MostPopularUseCase;
-import com.xrigau.nytimesmostpopular.details.ItemDetailActivity;
-import com.xrigau.nytimesmostpopular.details.ItemDetailFragment;
+import com.xrigau.nytimesmostpopular.details.ArticleDetailFragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -61,8 +60,8 @@ public class ArticleListActivity extends AppCompatActivity {
         @Override
         public void navigate(Article article) {
             Bundle arguments = new Bundle();
-            arguments.putString(ItemDetailFragment.ARG_ITEM_ID, String.valueOf(article.getId()));
-            ItemDetailFragment fragment = new ItemDetailFragment();
+            arguments.putSerializable(ArticleDetailFragment.ARG_ARTICLE, article);
+            ArticleDetailFragment fragment = new ArticleDetailFragment();
             fragment.setArguments(arguments);
             fragmentManager.beginTransaction()
                     .replace(R.id.item_detail_container, fragment)
@@ -72,6 +71,8 @@ public class ArticleListActivity extends AppCompatActivity {
 
     private static class NewScreenStrategy implements ArticleAdapter.NavigationStrategy {
 
+        private static final String VIEW_DETAILS_ACTION = "com.xrigau.nytimesmostpopular.VIEW_DETAILS";
+
         private final Context context;
 
         private NewScreenStrategy(Context context) {
@@ -80,8 +81,8 @@ public class ArticleListActivity extends AppCompatActivity {
 
         @Override
         public void navigate(Article article) {
-            Intent intent = new Intent(context, ItemDetailActivity.class);
-            intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, String.valueOf(article.getId()));
+            Intent intent = new Intent(VIEW_DETAILS_ACTION);
+            intent.putExtra(ArticleDetailFragment.ARG_ARTICLE, article);
             context.startActivity(intent);
         }
     }

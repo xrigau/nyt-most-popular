@@ -25,7 +25,7 @@ public class ArticleDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.item_detail, container, false);
+        return inflater.inflate(R.layout.article_detail, container, false);
     }
 
     @Override

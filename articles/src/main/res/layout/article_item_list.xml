@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/article_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@android:drawable/ic_dialog_info" />
+
+    <TextView
+        android:id="@+id/article_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="?attr/textAppearanceListItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/article_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Supporters of the Democratic candidate Jon Ossoff after his Lorem ipsum" />
+
+    <TextView
+        android:id="@+id/article_author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textAppearance="?attr/textAppearanceListItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/article_image"
+        app:layout_constraintTop_toBottomOf="@id/article_title"
+        tools:text="By John Snow and Elsa Doe" />
+
+    <TextView
+        android:id="@+id/article_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:drawableLeft="@android:drawable/ic_menu_my_calendar"
+        android:drawablePadding="4dp"
+        android:drawableStart="@android:drawable/ic_menu_my_calendar"
+        android:textAppearance="?attr/textAppearanceListItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/article_author"
+        tools:text="2019-08-23" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

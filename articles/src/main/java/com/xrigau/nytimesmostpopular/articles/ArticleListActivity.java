@@ -1,14 +1,12 @@
 package com.xrigau.nytimesmostpopular.articles;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.xrigau.nytimesmostpopular.HttpServiceFactory;
+import com.xrigau.nytimesmostpopular.article.Article;
 import com.xrigau.nytimesmostpopular.article.MostPopularUseCase;
 import com.xrigau.nytimesmostpopular.details.ItemDetailActivity;
 import com.xrigau.nytimesmostpopular.details.ItemDetailFragment;
-import com.xrigau.nytimesmostpopular.dummy.DummyContent;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,14 +21,17 @@ public class ArticleListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
+        MostPopularUseCase mostPopularUseCase = MostPopularUseCase.create(HttpServiceFactory.create("https://api.nytimes.com/"));
+        ArticlesView articlesView = AndroidArticlesView.create(this, createNavigationStrategy());
+        articlesPresenter = new ArticleListPresenter(mostPopularUseCase, articlesView);
+    }
 
-        RecyclerView recyclerView = findViewById(R.id.item_list);
-        recyclerView.setAdapter(new ArticleAdapter(DummyContent.ITEMS, createNavigationStrategy()));
-
-        articlesPresenter = new ArticleListPresenter(MostPopularUseCase.create(HttpServiceFactory.create("https://api.nytimes.com/")), new AndroidArticlesView());
+    private ArticleAdapter.NavigationStrategy createNavigationStrategy() {
+        if (usingTwoPaneLayout()) {
+            return new TwoPaneStrategy(getSupportFragmentManager());
+        } else {
+            return new NewScreenStrategy(this);
+        }
     }
 
     @Override
@@ -43,14 +44,6 @@ public class ArticleListActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         articlesPresenter.stopPresenting();
-    }
-
-    private ArticleAdapter.NavigationStrategy createNavigationStrategy() {
-        if (usingTwoPaneLayout()) {
-            return new TwoPaneStrategy(getSupportFragmentManager());
-        } else {
-            return new NewScreenStrategy(this);
-        }
     }
 
     private boolean usingTwoPaneLayout() {
@@ -66,9 +59,9 @@ public class ArticleListActivity extends AppCompatActivity {
         }
 
         @Override
-        public void navigate(String item) {
+        public void navigate(Article article) {
             Bundle arguments = new Bundle();
-            arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item);
+            arguments.putString(ItemDetailFragment.ARG_ITEM_ID, String.valueOf(article.getId()));
             ItemDetailFragment fragment = new ItemDetailFragment();
             fragment.setArguments(arguments);
             fragmentManager.beginTransaction()
@@ -86,9 +79,9 @@ public class ArticleListActivity extends AppCompatActivity {
         }
 
         @Override
-        public void navigate(String item) {
+        public void navigate(Article article) {
             Intent intent = new Intent(context, ItemDetailActivity.class);
-            intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item);
+            intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, article.getId());
             context.startActivity(intent);
         }
     }

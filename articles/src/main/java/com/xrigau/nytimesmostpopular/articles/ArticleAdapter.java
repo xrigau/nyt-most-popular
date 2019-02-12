@@ -35,7 +35,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         Article article = articles.get(position);
-        imageLoader.loadImage(article.getThumbnail().getUrl(), holder.image);
+        imageLoader.loadThumbnail(article.getThumbnail().getUrl(), holder.image);
         holder.title.setText(article.getTitle());
         holder.author.setText(article.getAuthors());
         holder.date.setText(article.getPublishedDate());

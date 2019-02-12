@@ -2,6 +2,8 @@ package com.xrigau.nytimesmostpopular.articles;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.xrigau.nytimesmostpopular.article.Article;
@@ -20,6 +22,8 @@ public class AndroidArticlesView implements ArticlesView {
         toolbar.setTitle(activity.getTitle());
         activity.setSupportActionBar(toolbar);
         RecyclerView recyclerView = activity.findViewById(R.id.articles);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), LinearLayoutManager.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
         return new AndroidArticlesView(recyclerView, ImageLoader.create(), articleDetailsDisplayStrategy);
     }
 

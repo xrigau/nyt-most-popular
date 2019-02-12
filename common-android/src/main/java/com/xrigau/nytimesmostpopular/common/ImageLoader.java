@@ -1,8 +1,8 @@
 package com.xrigau.nytimesmostpopular.common;
 
-import com.squareup.picasso.Picasso;
-
 import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 public class ImageLoader {
 
@@ -16,8 +16,13 @@ public class ImageLoader {
         this.picasso = picasso;
     }
 
+    public void loadThumbnail(String url, final ImageView imageView) {
+        picasso.load(url)
+                .transform(new CircleTransform())
+                .into(imageView);
+    }
+
     public void loadImage(String url, ImageView imageView) {
         picasso.load(url).into(imageView);
     }
-
 }

@@ -1,6 +1,8 @@
 <manifest package="com.xrigau.nytimesmostpopular.articles"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application>
         <activity
             android:name="com.xrigau.nytimesmostpopular.articles.ArticleListActivity"

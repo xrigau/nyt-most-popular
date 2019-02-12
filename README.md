@@ -30,7 +30,13 @@ And you can also install the app directly to an attached Android device by runni
 
 ## Tests
 
-Very simple Espresso tests have been created. They're inside the `app/src/androidTest` folder and only cover a basic use case of opening the app and tapping on an article.
+Some unit tests exist in the project to ensure the critical parts of the code works as expected. These tests are written in JUnit 4 and can be executed from the command line with the following command:
+
+```
+./gradlew test
+```
+
+Additionally, very simple Espresso tests have been created. They're inside the `app/src/androidTest` folder and only cover a basic use case of opening the app and tapping on an article.
 These can be run from the IDE or from the command line by executing the following command:
 
 ```

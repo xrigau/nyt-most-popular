@@ -2,14 +2,15 @@ package com.xrigau.nytimesmostpopular;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.xrigau.nytimesmostpopular.dummy.DummyContent;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class ArticleListActivity extends AppCompatActivity {
-
-    private boolean showDetailPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +21,55 @@ public class ArticleListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        if (findViewById(R.id.item_detail_container) != null) {
-            showDetailPane = true;
-        }
-
         RecyclerView recyclerView = findViewById(R.id.item_list);
-        recyclerView.setAdapter(new ArticleAdapter(this, DummyContent.ITEMS, showDetailPane));
+        recyclerView.setAdapter(new ArticleAdapter(DummyContent.ITEMS, createNavigationStrategy()));
     }
 
+    private ArticleAdapter.NavigationStrategy createNavigationStrategy() {
+        if (usingTwoPaneLayout()) {
+            return new TwoPaneStrategy(getSupportFragmentManager());
+        } else {
+            return new NewScreenStrategy(this);
+        }
+    }
+
+    private boolean usingTwoPaneLayout() {
+        return getResources().getBoolean(R.bool.is_tablet);
+    }
+
+    private static class TwoPaneStrategy implements ArticleAdapter.NavigationStrategy {
+
+        private final FragmentManager fragmentManager;
+
+        private TwoPaneStrategy(FragmentManager fragmentManager) {
+            this.fragmentManager = fragmentManager;
+        }
+
+        @Override
+        public void navigate(String item) {
+            Bundle arguments = new Bundle();
+            arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item);
+            ItemDetailFragment fragment = new ItemDetailFragment();
+            fragment.setArguments(arguments);
+            fragmentManager.beginTransaction()
+                    .replace(R.id.item_detail_container, fragment)
+                    .commit();
+        }
+    }
+
+    private static class NewScreenStrategy implements ArticleAdapter.NavigationStrategy {
+
+        private final Context context;
+
+        private NewScreenStrategy(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void navigate(String item) {
+            Intent intent = new Intent(context, ItemDetailActivity.class);
+            intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item);
+            context.startActivity(intent);
+        }
+    }
 }

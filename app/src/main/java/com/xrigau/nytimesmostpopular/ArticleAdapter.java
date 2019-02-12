@@ -1,11 +1,9 @@
 package com.xrigau.nytimesmostpopular;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.xrigau.nytimesmostpopular.dummy.DummyContent;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,68 +13,56 @@ import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
 
-    private final ArticleListActivity mParentActivity;
-    private final List<DummyContent.DummyItem> mValues;
-    private final boolean mTwoPane;
-    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
-            if (mTwoPane) {
-                Bundle arguments = new Bundle();
-                arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
-                ItemDetailFragment fragment = new ItemDetailFragment();
-                fragment.setArguments(arguments);
-                mParentActivity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.item_detail_container, fragment)
-                        .commit();
-            } else {
-                Context context = view.getContext();
-                Intent intent = new Intent(context, ItemDetailActivity.class);
-                intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
+    private final List<DummyContent.DummyItem> items;
+    private final NavigationStrategy navigationStrategy;
 
-                context.startActivity(intent);
-            }
-        }
-    };
-
-    ArticleAdapter(ArticleListActivity parent,
-                   List<DummyContent.DummyItem> items,
-                   boolean twoPane) {
-        mValues = items;
-        mParentActivity = parent;
-        mTwoPane = twoPane;
+    ArticleAdapter(List<DummyContent.DummyItem> items, NavigationStrategy navigationStrategy) {
+        this.items = items;
+        this.navigationStrategy = navigationStrategy;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_list_content, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        holder.idView.setText(items.get(position).id);
+        holder.contentView.setText(items.get(position).content);
 
-        holder.itemView.setTag(mValues.get(position));
-        holder.itemView.setOnClickListener(mOnClickListener);
+        holder.itemView.setTag(items.get(position));
+        holder.itemView.setOnClickListener(onClickListener);
     }
+
+    private final View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
+            navigationStrategy.navigate(item.id);
+        }
+    };
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        final TextView mIdView;
-        final TextView mContentView;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        final TextView idView;
+        final TextView contentView;
 
         ViewHolder(View view) {
             super(view);
-            mIdView = (TextView) view.findViewById(R.id.id_text);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            idView = view.findViewById(R.id.id_text);
+            contentView = view.findViewById(R.id.content);
         }
+    }
+
+    interface NavigationStrategy {
+        void navigate(String item); // TODO: Use the correct type
     }
 }

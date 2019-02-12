@@ -31,9 +31,10 @@ public class ArticleDetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ArticleDetailView articleDetailView = AndroidArticleDetailView.create(this);
+        ArticleDetailPresenter presenter = new ArticleDetailPresenter(articleDetailView, new AndroidNavigator(view.getContext()));
         Article article = (Article) getArguments().getSerializable(ARG_ARTICLE);
-        ArticleDetailView articleDetailView = ArticleDetailView.create(this);
-        articleDetailView.show(article);
+        presenter.startPresenting(article);
     }
 
 }

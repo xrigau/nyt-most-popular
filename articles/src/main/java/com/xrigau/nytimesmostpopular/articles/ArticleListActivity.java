@@ -3,6 +3,7 @@ package com.xrigau.nytimesmostpopular.articles;
 import androidx.appcompat.app.AppCompatActivity;
 import com.xrigau.nytimesmostpopular.HttpServiceFactory;
 import com.xrigau.nytimesmostpopular.article.MostPopularUseCase;
+import com.xrigau.nytimesmostpopular.details.AndroidNavigator;
 
 import android.os.Bundle;
 
@@ -24,7 +25,7 @@ public class ArticleListActivity extends AppCompatActivity {
         if (usingTwoPaneLayout()) {
             return new TwoPaneDetailFragmentStrategy(getSupportFragmentManager());
         } else {
-            return new DetailActivityNavigationStrategy(this);
+            return new DetailActivityNavigationStrategy(new AndroidNavigator(this));
         }
     }
 

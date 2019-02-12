@@ -1,6 +1,7 @@
 package com.xrigau.nytimesmostpopular.details;
 
 import androidx.browser.customtabs.CustomTabsIntent;
+import com.xrigau.nytimesmostpopular.Navigator;
 import com.xrigau.nytimesmostpopular.article.Article;
 import com.xrigau.nytimesmostpopular.common.R;
 

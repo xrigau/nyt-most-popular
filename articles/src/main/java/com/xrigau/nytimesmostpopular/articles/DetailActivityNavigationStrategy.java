@@ -1,7 +1,7 @@
 package com.xrigau.nytimesmostpopular.articles;
 
 import com.xrigau.nytimesmostpopular.article.Article;
-import com.xrigau.nytimesmostpopular.details.Navigator;
+import com.xrigau.nytimesmostpopular.Navigator;
 
 class DetailActivityNavigationStrategy implements ArticleDetailsDisplayStrategy {
 

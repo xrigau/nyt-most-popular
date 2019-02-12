@@ -1,4 +1,4 @@
-package com.xrigau.nytimesmostpopular.details;
+package com.xrigau.nytimesmostpopular;
 
 import com.xrigau.nytimesmostpopular.article.Article;
 

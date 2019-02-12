@@ -1,5 +1,6 @@
 package com.xrigau.nytimesmostpopular.details;
 
+import com.xrigau.nytimesmostpopular.Navigator;
 import com.xrigau.nytimesmostpopular.article.Article;
 
 class ArticleDetailPresenter {

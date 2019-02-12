@@ -22,17 +22,18 @@ class ResponseConverter {
                     new Article(
                             apiArticle.getId(),
                             apiArticle.getTitle(),
+                            apiArticle.getAbstract(),
                             apiArticle.getByline(),
                             apiArticle.getPublishedDate(),
                             apiArticle.getUrl(),
-                            getImage(apiArticle)
-                    )
+                            getImage(apiArticle, "Large Thumbnail"),
+                            getImage(apiArticle, "superJumbo"))
             );
         }
         return articles;
     }
 
-    private Article.Image getImage(ApiArticle apiArticle) {
+    private Article.Image getImage(ApiArticle apiArticle, String desiredFormat) {
         if (apiArticle.getMedia() == null
                 || apiArticle.getMedia().isEmpty()
                 || !apiArticle.getMedia().get(0).getType().equals("image")
@@ -42,7 +43,7 @@ class ResponseConverter {
         }
 
         for (ApiArticle.ApiMediaMetadata apiMediaMetadata : apiArticle.getMedia().get(0).getMediaMetadata()) {
-            if (apiMediaMetadata.getFormat().equals("Large")) {
+            if (apiMediaMetadata.getFormat().equals(desiredFormat)) {
                 return new Article.Image(apiMediaMetadata.getUrl());
             }
         }

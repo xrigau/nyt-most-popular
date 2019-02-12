@@ -6,18 +6,22 @@ public class Article implements Serializable {
 
     private final long id;
     private final String title;
+    private final String abstractText;
     private final String authors;
     private final String publishedDate;
     private final String url;
-    private final Image image;
+    private final Image thumbnail;
+    private final Image hero;
 
-    public Article(long id, String title, String authors, String publishedDate, String url, Image image) {
+    public Article(long id, String title, String abstractText, String authors, String publishedDate, String url, Image thumbnail, Image hero) {
         this.id = id;
         this.title = title;
+        this.abstractText = abstractText;
         this.authors = authors;
         this.publishedDate = publishedDate;
         this.url = url;
-        this.image = image;
+        this.thumbnail = thumbnail;
+        this.hero = hero;
     }
 
     public long getId() {
@@ -26,6 +30,10 @@ public class Article implements Serializable {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getAbstractText() {
+        return abstractText;
     }
 
     public String getAuthors() {
@@ -40,8 +48,12 @@ public class Article implements Serializable {
         return url;
     }
 
-    public Image getImage() {
-        return image;
+    public Image getThumbnail() {
+        return thumbnail;
+    }
+
+    public Image getHero() {
+        return hero;
     }
 
     @Override
@@ -49,10 +61,12 @@ public class Article implements Serializable {
         return "Article{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", abstractText='" + abstractText + '\'' +
                 ", authors='" + authors + '\'' +
                 ", publishedDate='" + publishedDate + '\'' +
                 ", url='" + url + '\'' +
-                ", image=" + image +
+                ", thumbnail=" + thumbnail + '\'' +
+                ", hero=" + hero +
                 '}';
     }
 
@@ -65,20 +79,24 @@ public class Article implements Serializable {
 
         if (id != article.id) return false;
         if (!title.equals(article.title)) return false;
+        if (!abstractText.equals(article.abstractText)) return false;
         if (!authors.equals(article.authors)) return false;
         if (!publishedDate.equals(article.publishedDate)) return false;
         if (!url.equals(article.url)) return false;
-        return image.equals(article.image);
+        if (!thumbnail.equals(article.thumbnail)) return false;
+        return hero.equals(article.hero);
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + title.hashCode();
+        result = 31 * result + abstractText.hashCode();
         result = 31 * result + authors.hashCode();
         result = 31 * result + publishedDate.hashCode();
         result = 31 * result + url.hashCode();
-        result = 31 * result + image.hashCode();
+        result = 31 * result + thumbnail.hashCode();
+        result = 31 * result + hero.hashCode();
         return result;
     }
 

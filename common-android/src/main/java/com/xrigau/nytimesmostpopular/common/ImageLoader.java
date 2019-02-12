@@ -1,4 +1,4 @@
-package com.xrigau.nytimesmostpopular;
+package com.xrigau.nytimesmostpopular.common;
 
 import com.squareup.picasso.Picasso;
 
@@ -16,7 +16,7 @@ public class ImageLoader {
         this.picasso = picasso;
     }
 
-    public void loadThumbnail(String url, ImageView imageView) {
+    public void loadImage(String url, ImageView imageView) {
         picasso.load(url).into(imageView);
     }
 

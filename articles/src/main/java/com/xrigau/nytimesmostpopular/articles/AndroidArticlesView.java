@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
-import com.xrigau.nytimesmostpopular.ImageLoader;
 import com.xrigau.nytimesmostpopular.article.Article;
+import com.xrigau.nytimesmostpopular.common.ImageLoader;
 
 import java.util.List;
 

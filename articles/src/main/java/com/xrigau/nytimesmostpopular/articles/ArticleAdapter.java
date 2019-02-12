@@ -17,12 +17,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
     private final List<Article> articles;
     private final ImageLoader imageLoader;
-    private final NavigationStrategy navigationStrategy;
+    private final ArticleDetailsDisplayStrategy articleDetailsDisplayStrategy;
 
-    ArticleAdapter(List<Article> articles, ImageLoader imageLoader, NavigationStrategy navigationStrategy) {
+    ArticleAdapter(List<Article> articles, ImageLoader imageLoader, ArticleDetailsDisplayStrategy articleDetailsDisplayStrategy) {
         this.articles = articles;
         this.imageLoader = imageLoader;
-        this.navigationStrategy = navigationStrategy;
+        this.articleDetailsDisplayStrategy = articleDetailsDisplayStrategy;
     }
 
     @NonNull
@@ -48,7 +48,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigationStrategy.navigate(article);
+                articleDetailsDisplayStrategy.display(article);
             }
         };
     }
@@ -73,7 +73,4 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         }
     }
 
-    interface NavigationStrategy {
-        void navigate(Article article);
-    }
 }

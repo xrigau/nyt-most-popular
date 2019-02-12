@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.xrigau.nytimesmostpopular.ImageLoader;
 import com.xrigau.nytimesmostpopular.article.Article;
-import com.xrigau.nytimesmostpopular.articles.ArticleAdapter.NavigationStrategy;
 
 import java.util.List;
 
@@ -14,25 +13,25 @@ public class AndroidArticlesView implements ArticlesView {
 
     private final RecyclerView recyclerView;
     private final ImageLoader imageLoader;
-    private final NavigationStrategy navigationStrategy;
+    private final ArticleDetailsDisplayStrategy articleDetailsDisplayStrategy;
 
-    public static ArticlesView create(AppCompatActivity activity, NavigationStrategy navigationStrategy) {
+    public static ArticlesView create(AppCompatActivity activity, ArticleDetailsDisplayStrategy articleDetailsDisplayStrategy) {
         Toolbar toolbar = activity.findViewById(R.id.toolbar);
         toolbar.setTitle(activity.getTitle());
         activity.setSupportActionBar(toolbar);
         RecyclerView recyclerView = activity.findViewById(R.id.articles);
-        return new AndroidArticlesView(recyclerView, ImageLoader.create(), navigationStrategy);
+        return new AndroidArticlesView(recyclerView, ImageLoader.create(), articleDetailsDisplayStrategy);
     }
 
-    AndroidArticlesView(RecyclerView recyclerView, ImageLoader imageLoader, NavigationStrategy navigationStrategy) {
+    AndroidArticlesView(RecyclerView recyclerView, ImageLoader imageLoader, ArticleDetailsDisplayStrategy articleDetailsDisplayStrategy) {
         this.recyclerView = recyclerView;
         this.imageLoader = imageLoader;
-        this.navigationStrategy = navigationStrategy;
+        this.articleDetailsDisplayStrategy = articleDetailsDisplayStrategy;
     }
 
     @Override
     public void show(List<Article> articles) {
-        recyclerView.setAdapter(new ArticleAdapter(articles, imageLoader, navigationStrategy));
+        recyclerView.setAdapter(new ArticleAdapter(articles, imageLoader, articleDetailsDisplayStrategy));
     }
 
     @Override

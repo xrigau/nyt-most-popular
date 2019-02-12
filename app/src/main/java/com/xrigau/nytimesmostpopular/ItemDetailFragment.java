@@ -16,7 +16,7 @@ import com.xrigau.nytimesmostpopular.dummy.DummyContent;
 
 /**
  * A fragment representing a single Item detail screen.
- * This fragment is either contained in a {@link ItemListActivity}
+ * This fragment is either contained in a {@link ArticleListActivity}
  * in two-pane mode (on tablets) or a {@link ItemDetailActivity}
  * on handsets.
  */

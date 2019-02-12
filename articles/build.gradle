@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
   compileSdkVersion 28
   defaultConfig {
@@ -9,7 +12,7 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-    buildConfigField "String", "API_TOKEN", '"2Rxr2VwHajucNjXAtcc9PzBAVe7uvdpp"'
+    buildConfigField "String", "API_TOKEN", "\"${properties.getProperty("apiToken")}\""
   }
   buildTypes {
     release {

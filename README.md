@@ -16,16 +16,25 @@ I've included a `local.properties.sample` file as an example.
 
 ## Building the app
 
-Once you've put the API Token in the `local.properties` file, you can build the app with the standard gradle command:
+Once you've put the API Token in the `local.properties` file, you can build the app from the IDE or by running this gradle command:
 
 ```
 ./gradlew build
 ```
 
-Or you can install it directly to an attached Android device by running:
+And you can also install the app directly to an attached Android device by running:
 
 ```
 ./gradlew installDebug
+```
+
+## Tests
+
+Very simple Espresso tests have been created. They're inside the `app/src/androidTest` folder and only cover a basic use case of opening the app and tapping on an article.
+These can be run from the IDE or from the command line by executing the following command:
+
+```
+./gradlew connectedCheck
 ```
 
 ## Architecture

@@ -27,18 +27,29 @@ class AndroidArticleDetailView implements ArticleDetailView {
                 (TextView) articleDetailFragment.getView().findViewById(R.id.article_author),
                 (TextView) articleDetailFragment.getView().findViewById(R.id.article_date),
                 (TextView) articleDetailFragment.getView().findViewById(R.id.article_abstract),
-                (FloatingActionButton) articleDetailFragment.getView().findViewById(R.id.fab)
+                floatingActionButton(articleDetailFragment)
         );
     }
 
     private static ImageView image(Fragment articleDetailFragment) {
         boolean isTablet = articleDetailFragment.getResources().getBoolean(R.bool.is_tablet);
         if (isTablet) {
-            ImageView image = articleDetailFragment.getView().findViewById(R.id.article_image);
+            ImageView image = articleDetailFragment.getView().findViewById(R.id.article_image_tablet);
             image.setVisibility(View.VISIBLE);
             return image;
         } else {
             return articleDetailFragment.getActivity().findViewById(R.id.article_image);
+        }
+    }
+
+    private static FloatingActionButton floatingActionButton(ArticleDetailFragment articleDetailFragment) {
+        boolean isTablet = articleDetailFragment.getResources().getBoolean(R.bool.is_tablet);
+        if (isTablet) {
+            FloatingActionButton floatingActionButton = articleDetailFragment.getView().findViewById(R.id.fab_tablet);
+            floatingActionButton.show();
+            return floatingActionButton;
+        } else {
+            return (FloatingActionButton) articleDetailFragment.getActivity().findViewById(R.id.fab);
         }
     }
 

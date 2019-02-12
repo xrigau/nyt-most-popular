@@ -1,9 +1,12 @@
 package com.xrigau.nytimesmostpopular.details;
 
+import androidx.browser.customtabs.CustomTabsIntent;
 import com.xrigau.nytimesmostpopular.article.Article;
+import com.xrigau.nytimesmostpopular.common.R;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 public class AndroidNavigator implements Navigator {
 
@@ -24,6 +27,9 @@ public class AndroidNavigator implements Navigator {
 
     @Override
     public void navigateTo(String url) {
-        // TODO: Chrome custom tabs
+        CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder()
+                .setToolbarColor(context.getResources().getColor(R.color.browser_tabs_color))
+                .build();
+        customTabsIntent.launchUrl(context, Uri.parse(url));
     }
 }

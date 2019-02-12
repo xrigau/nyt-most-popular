@@ -7,7 +7,7 @@ public interface ArticlesResult {
     class ServerError implements ArticlesResult {
         private final String reason;
 
-        ServerError(String reason) {
+        public ServerError(String reason) {
             this.reason = reason;
         }
 
@@ -41,7 +41,7 @@ public interface ArticlesResult {
     class ClientError implements ArticlesResult {
         private final Throwable throwable;
 
-        ClientError(Throwable throwable) {
+        public ClientError(Throwable throwable) {
             this.throwable = throwable;
         }
 
@@ -75,7 +75,7 @@ public interface ArticlesResult {
     class Success implements ArticlesResult {
         private final List<Article> articles;
 
-        Success(List<Article> articles) {
+        public Success(List<Article> articles) {
             this.articles = articles;
         }
 

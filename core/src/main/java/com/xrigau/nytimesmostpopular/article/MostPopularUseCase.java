@@ -26,7 +26,7 @@ public class MostPopularUseCase {
         return new MostPopularUseCase(mostPopularService, new ResponseConverter(), new FailureConverter(), apiToken);
     }
 
-    private MostPopularUseCase(MostPopularService mostPopularService, ResponseConverter responseConverter, FailureConverter failureConverter, String apiToken) {
+    MostPopularUseCase(MostPopularService mostPopularService, ResponseConverter responseConverter, FailureConverter failureConverter, String apiToken) {
         this.mostPopularService = mostPopularService;
         this.responseConverter = responseConverter;
         this.failureConverter = failureConverter;

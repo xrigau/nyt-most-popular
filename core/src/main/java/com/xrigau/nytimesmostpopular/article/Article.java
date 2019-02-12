@@ -101,7 +101,7 @@ public class Article implements Serializable {
     }
 
     public static class Image implements Serializable {
-        static final Image MISSING = new Image("missing");
+        public static final Image MISSING = new Image("missing");
 
         private final String url;
 

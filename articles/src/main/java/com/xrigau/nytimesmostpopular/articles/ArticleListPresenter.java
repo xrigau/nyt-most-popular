@@ -15,6 +15,8 @@ public class ArticleListPresenter implements ArticlesPresenter {
 
     @Override
     public void startPresenting() {
+        articlesView.showLoading();
+
         mostPopularUseCase.loadMostViewedArticles(new MostPopularUseCase.Callback() {
             @Override
             public void onResult(ArticlesResult result) {

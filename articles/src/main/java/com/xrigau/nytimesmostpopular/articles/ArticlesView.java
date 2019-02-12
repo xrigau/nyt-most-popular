@@ -10,4 +10,6 @@ interface ArticlesView {
     void showError(String reason);
 
     void showGenericError();
+
+    void showLoading();
 }

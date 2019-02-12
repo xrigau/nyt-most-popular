@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">articles</string>
     <string name="generic_error">Oops! An error has occurred. Try again later…</string>
+    <string name="loading">Loading. Articles will show shortly…</string>
 </resources>

@@ -43,4 +43,9 @@ public class AndroidArticlesView implements ArticlesView {
     public void showGenericError() {
         Snackbar.make(recyclerView, R.string.generic_error, Snackbar.LENGTH_LONG).show();
     }
+
+    @Override
+    public void showLoading() {
+        Snackbar.make(recyclerView, R.string.loading, Snackbar.LENGTH_SHORT).show();
+    }
 }

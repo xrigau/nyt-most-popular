@@ -16,6 +16,7 @@ class TwoPaneDetailFragmentStrategy implements ArticleDetailsDisplayStrategy {
 
     @Override
     public void display(Article article) {
+        // There's some duplication here & in ArticleDetailActivity - could be extracted if needed
         Bundle arguments = new Bundle();
         arguments.putSerializable(ArticleDetailFragment.ARG_ARTICLE, article);
         ArticleDetailFragment fragment = new ArticleDetailFragment();

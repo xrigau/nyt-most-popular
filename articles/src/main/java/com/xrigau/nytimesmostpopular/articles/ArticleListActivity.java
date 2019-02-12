@@ -16,7 +16,8 @@ public class ArticleListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.articles_activity);
 
-        MostPopularUseCase mostPopularUseCase = MostPopularUseCase.create(HttpServiceFactory.create("https://api.nytimes.com/"));
+        HttpServiceFactory httpServiceFactory = HttpServiceFactory.create("https://api.nytimes.com/");
+        MostPopularUseCase mostPopularUseCase = MostPopularUseCase.create(httpServiceFactory, BuildConfig.API_TOKEN);
         ArticlesView articlesView = AndroidArticlesView.create(this, createNavigationStrategy());
         articlesPresenter = new ArticleListPresenter(mostPopularUseCase, articlesView);
     }

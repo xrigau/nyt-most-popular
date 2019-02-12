@@ -80,7 +80,7 @@ public class Article {
         return result;
     }
 
-    static class Image {
+    public static class Image {
         static final Image MISSING = new Image("missing");
 
         private final String url;

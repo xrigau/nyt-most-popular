@@ -2,6 +2,7 @@ package com.xrigau.nytimesmostpopular.articles;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.xrigau.nytimesmostpopular.ImageLoader;
 import com.xrigau.nytimesmostpopular.article.Article;
 
 import android.view.LayoutInflater;
@@ -15,10 +16,12 @@ import java.util.List;
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
 
     private final List<Article> articles;
+    private final ImageLoader imageLoader;
     private final NavigationStrategy navigationStrategy;
 
-    ArticleAdapter(List<Article> articles, NavigationStrategy navigationStrategy) {
+    ArticleAdapter(List<Article> articles, ImageLoader imageLoader, NavigationStrategy navigationStrategy) {
         this.articles = articles;
+        this.imageLoader = imageLoader;
         this.navigationStrategy = navigationStrategy;
     }
 
@@ -32,7 +35,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         Article article = articles.get(position);
-        // TODO: Image
+        imageLoader.loadThumbnail(article.getImage().getUrl(), holder.image);
         holder.title.setText(article.getTitle());
         holder.author.setText(article.getAuthors());
         holder.date.setText(article.getPublishedDate());

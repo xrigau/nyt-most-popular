@@ -19,7 +19,7 @@ public class ArticleListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_list);
+        setContentView(R.layout.articles_activity);
 
         MostPopularUseCase mostPopularUseCase = MostPopularUseCase.create(HttpServiceFactory.create("https://api.nytimes.com/"));
         ArticlesView articlesView = AndroidArticlesView.create(this, createNavigationStrategy());
@@ -81,7 +81,7 @@ public class ArticleListActivity extends AppCompatActivity {
         @Override
         public void navigate(Article article) {
             Intent intent = new Intent(context, ItemDetailActivity.class);
-            intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, article.getId());
+            intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, String.valueOf(article.getId()));
             context.startActivity(intent);
         }
     }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
+import com.xrigau.nytimesmostpopular.ImageLoader;
 import com.xrigau.nytimesmostpopular.article.Article;
 import com.xrigau.nytimesmostpopular.articles.ArticleAdapter.NavigationStrategy;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class AndroidArticlesView implements ArticlesView {
 
     private final RecyclerView recyclerView;
+    private final ImageLoader imageLoader;
     private final NavigationStrategy navigationStrategy;
 
     public static ArticlesView create(AppCompatActivity activity, NavigationStrategy navigationStrategy) {
@@ -19,17 +21,18 @@ public class AndroidArticlesView implements ArticlesView {
         toolbar.setTitle(activity.getTitle());
         activity.setSupportActionBar(toolbar);
         RecyclerView recyclerView = activity.findViewById(R.id.articles);
-        return new AndroidArticlesView(recyclerView, navigationStrategy);
+        return new AndroidArticlesView(recyclerView, ImageLoader.create(), navigationStrategy);
     }
 
-    AndroidArticlesView(RecyclerView recyclerView, NavigationStrategy navigationStrategy) {
+    AndroidArticlesView(RecyclerView recyclerView, ImageLoader imageLoader, NavigationStrategy navigationStrategy) {
         this.recyclerView = recyclerView;
+        this.imageLoader = imageLoader;
         this.navigationStrategy = navigationStrategy;
     }
 
     @Override
     public void show(List<Article> articles) {
-        recyclerView.setAdapter(new ArticleAdapter(articles, navigationStrategy));
+        recyclerView.setAdapter(new ArticleAdapter(articles, imageLoader, navigationStrategy));
     }
 
     @Override

@@ -22,7 +22,9 @@ public class ArticleListActivity extends AppCompatActivity {
         HttpServiceFactory httpServiceFactory = HttpServiceFactory.create("https://api.nytimes.com/", okHttpClient);
         MostPopularUseCase mostPopularUseCase = MostPopularUseCase.create(httpServiceFactory, BuildConfig.API_TOKEN);
         ArticlesView articlesView = AndroidArticlesView.create(this, createNavigationStrategy());
+
         articlesPresenter = new ArticleListPresenter(mostPopularUseCase, articlesView);
+        articlesPresenter.startPresenting();
     }
 
     private ArticleDetailsDisplayStrategy createNavigationStrategy() {
@@ -38,14 +40,8 @@ public class ArticleListActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        articlesPresenter.startPresenting();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         articlesPresenter.stopPresenting();
     }
 

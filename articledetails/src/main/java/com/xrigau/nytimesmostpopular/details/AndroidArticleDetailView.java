@@ -68,7 +68,7 @@ class AndroidArticleDetailView implements ArticleDetailView {
         imageLoader.loadImage(article.getHero().getUrl(), image);
         title.setText(article.getTitle());
         author.setText(article.getAuthors());
-        date.setText(article.getPublishedDate());
+        date.setText(date.getResources().getString(R.string.published_date, article.getPublishedDate()));
         abstractText.setText(article.getAbstractText());
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

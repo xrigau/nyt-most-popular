@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="app_bar_height">300dp</dimen>
+
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="title_margin">16dp</dimen>
+    <dimen name="author_margin">8dp</dimen>
+    <dimen name="date_margin">2dp</dimen>
+    <dimen name="abstract_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

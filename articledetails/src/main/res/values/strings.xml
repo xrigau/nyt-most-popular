@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">articledetails</string>
     <string name="title_item_detail"></string>
+    <string name="published_date">Published: %s</string>
 </resources>

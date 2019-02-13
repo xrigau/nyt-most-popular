@@ -25,6 +25,11 @@
         <item name="fontFamily">sans-serif-condensed-medium</item>
     </style>
 
+    <style name="Article.Title.Large">
+        <item name="android:maxLines">4</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="Article.Author">
         <item name="android:textAppearance">?attr/textAppearanceListItem</item>
         <item name="android:textSize">@dimen/info_text_size</item>
@@ -34,7 +39,12 @@
     <style name="Article.Date">
         <item name="android:textAppearance">?attr/textAppearanceListItem</item>
         <item name="android:textSize">@dimen/info_text_size</item>
+        <item name="fontFamily">sans-serif-condensed-light</item>
+    </style>
+
+    <style name="Article.Abstract">
         <item name="fontFamily">sans-serif-light</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

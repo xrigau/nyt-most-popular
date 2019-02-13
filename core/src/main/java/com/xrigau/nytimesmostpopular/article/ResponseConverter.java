@@ -11,7 +11,16 @@ class ResponseConverter {
         if (apiResponse.isSuccessful()) {
             return new ArticlesResult.Success(convertArticles(apiResponse.body().getResults()));
         } else {
-            return new ArticlesResult.ServerError(apiResponse.body().getFault().getFaultstring());
+            return new ArticlesResult.ServerError(failureReason(apiResponse));
+        }
+    }
+
+    private String failureReason(Response<ApiResponse> apiResponse) {
+        ApiResponse body = apiResponse.body();
+        if (body == null) {
+            return "Unknown error";
+        } else {
+            return body.getFault().getFaultstring();
         }
     }
 

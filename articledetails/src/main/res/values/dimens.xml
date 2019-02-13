@@ -8,4 +8,7 @@
     <dimen name="date_margin">2dp</dimen>
     <dimen name="abstract_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="tablet_image_height">200dp</dimen>
+    <dimen name="image_margin_large">32dp</dimen>
+    <dimen name="image_margin_small">16dp</dimen>
 </resources>

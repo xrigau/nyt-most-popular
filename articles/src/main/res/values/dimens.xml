@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="item_width">350dp</dimen>
+    <dimen name="left_pane_width">350dp</dimen>
 
     <dimen name="screen_horizontal_padding">16dp</dimen>
     <dimen name="screen_vertical_padding">8dp</dimen>
